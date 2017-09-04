@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+    
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+	</head>
+	<body>
+	</body>
+	 /* Controller */
+
+	<script src="pizzaCtrl.js"></script>
+	
+	 /* Test Code */
+
+	<script type="text/javascript">
+	
+describe('pizza', function () {
+		
+	beforeEach(angular.mock.module('pizzaApp'));
+
+	var $controller;
+
+	beforeEach(angular.mock.inject(function(_$controller_){
+	  $controller = _$controller_;
+	}));
+/* Test 1 - more than 0 pizzas should return true */
+	describe('moreThan0Pizzas', function () {
+		it('more than 0 pizzas should return true', function () {
+			var $scope = {};
+			var controller = $controller('pizzaCtrl', { $scope: $scope });
+			$scope.pizzas[0]= {name:'Margerita',price:10.00, count:1};
+			expect($scope.moreThan0Pizzas($scope.pizzas[0])).toBe(true);
+		});	
+			
+	});
+/* Test 2 - 0 or less pizzas should return false */
+	describe('0 or less than 0 Pizzas', function () {
+		it('0 or less pizzas should return false', function () {
+			var $scope = {};
+			var controller = $controller('pizzaCtrl', { $scope: $scope });
+			
+			expect($scope.moreThan0Pizzas($scope.pizzas[0])).toBe(false);
+		});
+	});
+	/* Test 3 - pizza count should be 1 after pizza is added */
+	describe('addPizza', function () {
+		it('count should be 1 after 1 pizza is added', function () {
+			var $scope = {};
+			var controller = $controller('pizzaCtrl', { $scope: $scope });
+			$scope.addPizza($scope.pizzas[0]);
+			expect($scope.pizzas[0].count).toBe(1);
+		});
+	});
+	/* Test 4- pizza count should be 0 after pizza is removed again*/
+	describe('removePizza', function () {
+		it('count should be 0 after 1 pizza is added', function () {
+			var $scope = {};
+			var controller = $controller('pizzaCtrl', { $scope: $scope });
+			$scope.addPizza($scope.pizzas[0]);
+			$scope.removePizza($scope.pizzas[0]);
+			expect($scope.pizzas[0].count).toBe(0);
+		});
+	});
+});
+
+	</script>
+</html>
