@@ -21,7 +21,7 @@
 
     element(by.id('add-Pepperoni')).click();
 
-    expect(element(by.binding('Pepperoni')).getText()).
+    expect(element(by.id('count-Pepperoni')).getText()).
         toEqual('1'); // Total count for pepperoni must equal 1
   });
 	});
