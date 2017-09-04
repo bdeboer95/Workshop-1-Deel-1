@@ -26,15 +26,15 @@ Telefoonnummer:<input type="text" ng-model="person.phonenumber">
 <h3> Kies een pizza</h3>
 <ul>
 <li ng-repeat="y in pizzas"> 
- <button ng-show="show{{y.name}}" ng-click="removePizza(y)">-</button> <span  ng-bind="y.name">{{y.name}} </span> <button  id="add-{{y.name}}" ng-click="addPizza(y)">+</button>
- <span id="count-{{y.name}}">{{y.count}}</span>x
+ <button ng-show="show{{y.Name}}" ng-click="removePizza(y)">-</button> <span  ng-bind="y.Name y.Price">{{y.Name}} {{y.Price}} </span> <button  id="add-{{y.Name}}" ng-click="addPizza(y)">+</button>
+ <span id="count-{{y.Name}}">{{y.Count}}</span>x
 </li>
 </ul>
 
 <h2>Jouw bestelling:</h2>
 
-Totaal:<p ng-bind="totalPrice| number : 2"></p> euro<br>
-Aantal calorieen: 
+Totaal:<span ng-bind="totalPrice| number : 2"></span> euro<br>
+<span ng-style="{'background-color':'lightblue'}">Aantal calorieen: {{totalCalories}}</span>
 
 <h3>Uw bestelling wordt bezorgd op dit adres:</h3>
 {{person.firstName}}
